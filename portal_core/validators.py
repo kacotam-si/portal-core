@@ -19,6 +19,16 @@ class KanaValidator(validators.RegexValidator):
 
 
 @deconstructible
+class NonStrictEmailValidator(validators.EmailValidator):
+    user_regex = validators._lazy_re_compile(
+        r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*\Z"  # dot-atom
+        r"|^[-!#$%&.'*+/=?^_`{}|~0-9A-Z]+\Z"  # docomoの古いアドレスなどである'.@'を許容する
+        r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]'
+        r'|\\[\001-\011\013\014\016-\177])*"\Z)',  # quoted-string
+        re.IGNORECASE)
+
+
+@deconstructible
 class PhoneNumberValidator(validators.RegexValidator):
     regex = r'^[0-9]+-[0-9]+-[0-9]+$'
     message = 'xxx-xxxx-xxxxのようにハイフン付きで入力してください。'
@@ -28,16 +38,6 @@ class PhoneNumberValidator(validators.RegexValidator):
 class PostcodeValidator(validators.RegexValidator):
     regex = r'^[0-9]{3}-[0-9]{4}$'
     message = 'xxx-xxxxのようにハイフン付きで入力してください。'
-
-
-@deconstructible
-class NonStrictEmailValidator(validators.EmailValidator):
-    user_regex = validators._lazy_re_compile(
-        r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*\Z"  # dot-atom
-        r"|^[-!#$%&.'*+/=?^_`{}|~0-9A-Z]+\Z"  # docomoの古いアドレスなどである'.@'を許容する
-        r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]'
-        r'|\\[\001-\011\013\014\016-\177])*"\Z)',  # quoted-string
-        re.IGNORECASE)
 
 
 validate_comma_separeted_list = CommaSeparatedListValidator()
