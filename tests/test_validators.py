@@ -1,3 +1,5 @@
+import uuid
+
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 from django.test.utils import isolate_apps
@@ -60,6 +62,20 @@ class PostCodeValidatorTests(TestCase):
         valid_values = ['000-0000', '001-0035']
         invalid_values = ['0000000', '000-000-0000']
         v = validators.PostcodeValidator()
+        for valid in valid_values:
+            with self.subTest(valid=valid):
+                v(valid)
+        for invalid in invalid_values:
+            with self.subTest(invalid=invalid):
+                with self.assertRaises(ValidationError):
+                    v(invalid)
+
+
+class Uuid4ValidatorTests(TestCase):
+    def test_uuid4_validator(self):
+        valid_values = [str(uuid.uuid4().hex), str(uuid.uuid4())]
+        invalid_values = ['0000000', '000-000-0000']
+        v = validators.Uuid4Validator()
         for valid in valid_values:
             with self.subTest(valid=valid):
                 v(valid)

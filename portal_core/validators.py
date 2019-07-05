@@ -40,8 +40,15 @@ class PostcodeValidator(validators.RegexValidator):
     message = 'xxx-xxxxのようにハイフン付きで入力してください。'
 
 
+@deconstructible
+class Uuid4Validator(validators.RegexValidator):
+    regex = r'^[0-9a-zA-Z]{8}-?([0-9a-zA-Z]{4}-?){3}[0-9a-zA-Z]{12}$'
+    message = 'UUID4のフォーマットとして正しくありません。'
+
+
 validate_comma_separeted_list = CommaSeparatedListValidator()
 validate_only_kana = KanaValidator()
 validate_phone_number = PhoneNumberValidator()
 validate_postcode = PostcodeValidator()
 validate_non_strict_email = NonStrictEmailValidator()
+validate_uuid4 = Uuid4Validator()
