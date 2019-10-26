@@ -71,6 +71,20 @@ class PostCodeValidatorTests(TestCase):
                     v(invalid)
 
 
+class StrictUsernameValidatorTests(TestCase):
+    def test_strict_username_validator(self):
+        valid_values = ['example', 'Example', '@ex-ample', 'exa.mple']
+        invalid_values = ['#example', '$example', 'ユーザー名']
+        v = validators.StrictUsernameValidator()
+        for valid in valid_values:
+            with self.subTest(valid=valid):
+                v(valid)
+        for invalid in invalid_values:
+            with self.subTest(invalid=invalid):
+                with self.assertRaises(ValidationError):
+                    v(invalid)
+
+
 class Uuid4ValidatorTests(TestCase):
     def test_uuid4_validator(self):
         valid_values = [str(uuid.uuid4().hex), str(uuid.uuid4())]

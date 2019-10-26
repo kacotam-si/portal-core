@@ -41,6 +41,13 @@ class PostcodeValidator(validators.RegexValidator):
 
 
 @deconstructible
+class StrictUsernameValidator(validators.RegexValidator):
+    regex = r'^[\w.@+-]+$'
+    message = '使用できない文字列が含まれています。'
+    flags = re.ASCII
+
+
+@deconstructible
 class Uuid4Validator(validators.RegexValidator):
     regex = r'^[0-9a-zA-Z]{8}-?([0-9a-zA-Z]{4}-?){3}[0-9a-zA-Z]{12}$'
     message = 'UUID4のフォーマットとして正しくありません。'
