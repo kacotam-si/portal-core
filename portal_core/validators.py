@@ -12,6 +12,14 @@ class CommaSeparatedListValidator(validators.RegexValidator):
 
 
 @deconstructible
+class ColorCodeValidator(validators.RegexValidator):
+    """ 16進数表記カラーコードバリデータ """
+    regex = r'^#([0-9a-zA-Z]{3}|[0-9a-zA-Z]{6})$'
+    message = '#A1B, #A1B2C3のようにカラーコードで入力してください。'
+    flags = re.ASCII
+
+
+@deconstructible
 class KanaValidator(validators.RegexValidator):
     regex = r'^[{}-{}]+$'.format(chr(0x3040), chr(0x309F))
     message = 'ひらがなで入力してください。'

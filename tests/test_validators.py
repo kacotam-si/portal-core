@@ -27,6 +27,34 @@ class CommaSeparatedListValidatorTests(TestCase):
                     v(invalid)
 
 
+class ColorCodeValidatorTests(TestCase):
+    def test_color_code_validator(self):
+        valid_values = [
+            '#FFF',
+            '#FFFFFF',
+            '#aaa',
+            '#aaaaaa',
+            '#111',
+            '#111111',
+            '#A1B',
+            '#A1B2C3',
+        ]
+        invalid_values = [
+            'FFF',
+            '#FFFFFFF',
+            '#F',
+            'red',
+        ]
+        v = validators.ColorCodeValidator()
+        for valid in valid_values:
+            with self.subTest(valid=valid):
+                v(valid)
+        for invalid in invalid_values:
+            with self.subTest(invalid=invalid):
+                with self.assertRaises(ValidationError):
+                    v(invalid)
+
+
 class KanaValidatorTests(TestCase):
     def test_kana_validator(self):
         valid_kanas = ['ふりがな', 'がっこう', 'ささき']
