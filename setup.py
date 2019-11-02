@@ -54,6 +54,6 @@ setup(
     ],
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
-    install_requires=['Django', 'jpholiday', 'python-dateutil'],
+    install_requires=['Django', 'jpholiday', 'python-dateutil', 'chardet'],
     cmdclass={'test': DjangoTest},
 )

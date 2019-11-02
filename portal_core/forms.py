@@ -27,3 +27,21 @@ class ReadOnlyTextField(forms.Field):
 
     def has_changed(self, initial, data):
         return False
+
+
+class CsvUploadForm(forms.Form):
+    """ CSVデータアップロードフォーム """
+    csv_file = forms.FileField(
+        label='CSVファイル',
+        help_text='※CSVファイルのみをアップロードしてください。'
+    )
+
+    def clean_csv_file(self):
+        csv_file = self.cleaned_data['csv_file']
+        # TODO: ファイルフォーマットチェックまでするようにする
+        if csv_file.name.endswith('.csv'):
+            return csv_file
+        else:
+            raise forms.ValidationError(
+                'アップロードできるファイルの拡張子は".csv"のみです'
+            )
