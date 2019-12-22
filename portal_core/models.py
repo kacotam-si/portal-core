@@ -32,5 +32,5 @@ class NonStrictEmailField(models.EmailField):
     default_validators = [validate_non_strict_email]
 
     def formfield(self, **kwargs):
-        kwargs.update({'form_class': forms.NonStrictEmailFormField})
+        kwargs.update({'form_class': forms.NonStrictEmailField})
         return super().formfield(**kwargs)
