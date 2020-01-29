@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+portal-core = {editable = true,path = "."}
+coverage = "*"
+tox = "*"
+tox-pyenv = "*"
+flake8 = "*"
+flake8-django = "*"
+
+[packages]
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+test = "coverage run manage.py test"
+test-all = "tox"
+report = "coverage report"
+lint = "flake8 portal_core"

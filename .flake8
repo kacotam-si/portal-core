@@ -1,0 +1,33 @@
+[flake8]
+exclude =
+    manage.py
+    **/config/settings/*.py
+    **/migrations/*.py
+    **/__init__.py
+    .venv/**
+
+ignore =
+    # default ignored
+    E121,
+    E123,
+    E126,
+    E133,
+    E226,
+    E241,
+    E242,
+    E704,
+    W503,
+    W504,
+    W505,
+    # add
+    # F401  # imported but unused
+    F403  # ‘from module import *’ used; unable to detect undefined names
+    F405  # Name may be undefined, or defined from star imports: module
+
+max-line-length = 100
+
+show-source = True
+
+statistics = True
+
+max-complexity = 15
