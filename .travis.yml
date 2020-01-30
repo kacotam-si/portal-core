@@ -20,8 +20,8 @@ matrix:
     - env: DJANGO=master
 
 install:
-  - pip install tox tox-travis
-  - pip install coveralls
+  - pip install tox tox-travis coveralls
+  - pip install .
 
 script:
   - tox
