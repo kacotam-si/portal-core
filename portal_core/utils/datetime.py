@@ -44,3 +44,27 @@ def get_month_last(obj):
     else:
         raise ValueError
     return _date_obj - relativedelta(day=99)
+
+
+def get_next_year_month(year, month):
+    if month > 12 or month < 1:
+        raise ValueError('月は、1〜12の間である必要があります。')
+
+    if month == 12:
+        year += 1
+        month = 1
+    else:
+        month += 1
+    return year, month
+
+
+def get_prev_year_month(year, month):
+    if month > 12 or month < 1:
+        raise ValueError('月は、1〜12の間である必要があります。')
+
+    if month == 1:
+        year -= 1
+        month = 12
+    else:
+        month -= 1
+    return year, month

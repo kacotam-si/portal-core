@@ -2,7 +2,8 @@ import datetime
 
 from django.test import TestCase
 
-from portal_core.utils.datetime import get_nth_weekday, get_month_last
+from portal_core.utils.datetime import (get_nth_weekday, get_month_last,
+                                        get_next_year_month, get_prev_year_month)
 
 
 class DateTimeTests(TestCase):
@@ -48,3 +49,36 @@ class DateTimeTests(TestCase):
         for obj in test_cases_error:
             with self.assertRaises(ValueError):
                 self.assertEqual(get_month_last(obj))
+
+
+    def test_get_next_year_month(self):
+        test_cases = [
+            ((2019, 1), (2019, 2)),
+            ((2019, 12), (2020, 1)),
+        ]
+        test_cases_error = [
+            ((2019, 13), ValueError),
+        ]
+
+        for year_month, next_year_month in test_cases:
+            self.assertEqual(get_next_year_month(*year_month), next_year_month)
+
+        for year_month, error in test_cases_error:
+            with self.assertRaises(error):
+                self.assertEqual(get_next_year_month(*year_month))
+
+    def test_get_prev_year_month(self):
+        test_cases = [
+            ((2019, 1), (2018, 12)),
+            ((2019, 12), (2019, 11)),
+        ]
+        test_cases_error = [
+            ((2019, 13), ValueError),
+        ]
+
+        for year_month, prev_year_month in test_cases:
+            self.assertEqual(get_prev_year_month(*year_month), prev_year_month)
+
+        for year_month, error in test_cases_error:
+            with self.assertRaises(error):
+                self.assertEqual(get_prev_year_month(*year_month))
