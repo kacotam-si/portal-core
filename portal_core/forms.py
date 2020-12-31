@@ -10,7 +10,7 @@ class NonStrictEmailField(forms.EmailField):
 
 
 class ReadOnlyTextWidget(forms.Widget):
-    def render(self, name, value, attrs):
+    def render(self, name, value, attrs, renderer):
         final_attrs = self.build_attrs(attrs)
         return format_html('<div{}>{}</div>', flatatt(final_attrs), value)
 
