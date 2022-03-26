@@ -2,9 +2,9 @@
 portal-core
 ===============
 
-.. image:: https://travis-ci.org/kacotam-si/portal-core.svg?branch=master
-    :target: https://travis-ci.org/kacotam-si/portal-core
-    :alt: Travis CI
+.. image:: https://github.com/kacotam-si/portal-core/actions/workflows/django.yml/badge.svg
+    :target: https://github.com/kacotam-si/portal-core/actions/workflows/django.yml
+    :alt: Django CI
 
 .. image:: https://coveralls.io/repos/github/kacotam-si/portal-core/badge.svg?branch=master
     :target: https://coveralls.io/github/kacotam-si/portal-core?branch=master
