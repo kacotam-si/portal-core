@@ -29,8 +29,8 @@ portal-core
 Requirement
 ============
 
-* Python >= 3.5
-* Django >= 2.0
+* Python >= 3.6
+* Django >= 3.2
 
 
 Quick start
