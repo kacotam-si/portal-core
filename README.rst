@@ -2,7 +2,7 @@
 portal-core
 ===============
 
-.. image:: https://github.com/kacotam-si/portal-core/actions/workflows/django.yml/badge.svg
+.. image:: https://github.com/kacotam-si/portal-core/actions/workflows/django.yml/badge.svg?branch=master
     :target: https://github.com/kacotam-si/portal-core/actions/workflows/django.yml
     :alt: Django CI
 
